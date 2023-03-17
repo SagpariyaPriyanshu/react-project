@@ -1,0 +1,39 @@
+.b6 {
+    height: 45px;
+    width: 140px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    font-weight: 500;
+    background: white;
+    cursor: pointer;
+    transition: all 0.6s ease;
+    position: relative;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  .b6 {
+    z-index: 2;
+    transition: all 0.6s ease;
+    overflow: hidden;
+  }
+  .b6:after {
+    position: absolute;
+    content: " ";
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 0.6s ease;
+  }
+  .b6:hover {
+   color: #ffffff;
+   border-color: #ffffff;
+  }
+  .b6:hover:after {
+    -webkit-transform: scale(2) rotate(180deg);
+    transform: scale(2) rotate(180deg);
+    background: #000;    
+  }

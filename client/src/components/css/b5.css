@@ -1,0 +1,41 @@
+.b5 {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+		-webkit-tap-highlight-color: transparent;
+}
+
+.b5 {
+	width: 140px;
+	height: 45px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+	cursor: pointer;
+	background: #f3f943;
+	border: none;
+	border-radius: 15px;
+	box-shadow: 0px 5px 15px #d3db62, 0px -5px 15px #e9ffa6, inset 0px -2px 5px #c7ff4f, inset 0px 2px 5px #e6ffa6;
+	color: rgb(0, 0, 0);
+	font-size: 16px;
+	transition: 100ms;
+}
+
+.b5:hover {
+		border: 3px solid #bfd66d;
+	animation: hueRotation 4s linear infinite;
+}
+
+@keyframes hueRotation {
+	to {filter: hue-rotate(360deg);}
+}
+
+.b5:focus {
+	outline: none;
+}

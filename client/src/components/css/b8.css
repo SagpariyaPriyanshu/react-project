@@ -1,0 +1,47 @@
+.b8 {
+    height: 45px;
+    width: 140px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-weight: 300;
+    color: #000000;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: all 0.5s;
+    animation: b8bouncy 4s infinite linear;
+    position: relative;
+  }
+  
+  .b8:hover {
+    background-color: rgba(0, 0, 0,0.25);
+    color: #ffffff;
+    border-color: #ffffff;
+  }
+  
+  @keyframes b8bouncy {
+    0% {
+        top: 0em;
+      }
+      40% {
+        top: 0em;
+      }
+      43% {
+        top: -0.4em;
+      }
+      46% {
+        top: 0em;
+      }
+      48% {
+        top: -0.4em;
+      }
+      50% {
+        top: 0em;
+      }
+      100% {
+        top: 0em;
+      }
+    }

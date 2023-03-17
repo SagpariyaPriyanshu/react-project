@@ -1,0 +1,62 @@
+.b4 {
+    text-decoration: none;
+    border: 3px solid yellow;
+    color: transparent;
+    border-radius: 50px;
+    padding: 12px 20px;
+    font-size: 12px;
+    transition: all 0.5s;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    height: 45px;
+    width: 140px;
+  }
+  .b4:before {
+    content: "Hover Me";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: yellow;
+    border-radius: 50px;
+    background: rgb(34, 34, 34);
+    font-size: 16px;
+    top: 0;
+    left: 100%;
+    transition: all 1s;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    transform: scale(0) rotatey(0);
+    opacity: 0;
+  }
+  .b4:hover:before {
+    transform: scale(1) rotatey(360deg);
+    left: 0;
+    opacity: 1;
+  }
+  .b4:after {
+    content: "Hover Me";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: yellow;
+    border-radius: 50px;
+    background: rgb(34, 34, 34);
+    font-size: 16px;
+    top: 0;
+    left: 0;
+    transition: all 1s;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    transform: scale(1) rotatey(0);
+    opacity: 1;
+  }
+  .b4:hover:after {
+    transform: scale(0) rotatey(360deg);
+    left: -100%;
+    opacity: 0;
+  }
+  
