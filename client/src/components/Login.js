@@ -3,6 +3,7 @@ import React from 'react'
 import { authenticateSignup, authenticateLogin } from '../service/api';
 import { useState,useContext } from 'react';
 import {DataContext}  from '../context/DataProvider';
+import { useNavigate } from 'react-router-dom';
 
 const Component = styled(Box)`
     height: 75vh;
@@ -88,6 +89,8 @@ const loginInitialValues = {
 }
 
 export default function Login({open,setOpen}) {
+    const navigate = useNavigate();
+
     const [account, toggleAccount] = useState(accountInitialValues.login)
     const [signup, setSignup] = useState(signupInitialValues);
     const [login, setLogin] = useState(loginInitialValues);
@@ -106,11 +109,14 @@ export default function Login({open,setOpen}) {
     }
 
     const onInputChange = (e) => {
-
+        if (e.target.name === "username" && e.target.value === "admin") {
+            setError(true);
+        }
+        else {
+            setSignup({ ...signup, [e.target.name]: e.target.value });
+            setError(false);
+        }
         // here [] use because e is a varible but here e used as a key so []
-        setSignup({ ...signup,[e.target.name]: e.target.value})
-        console.log(e.target.value);
-        console.log(signup)
     }
     const signupuser = async () => {
         let response = await authenticateSignup(signup); 
@@ -120,20 +126,27 @@ export default function Login({open,setOpen}) {
     }
 
     const onValueChange = (e) => {
-        setLogin({ ...login, [e.target.name]: e.target.value});
-    }
+        setLogin({ ...login, [e.target.name]: e.target.value });
+    };
 
     const loginUser = async () => {
-        let response = await authenticateLogin(login);
-        console.log(response);
-        if(response.status === 200){
+        if (login.username === "admin" && login.password === "admin") {
+          handleClose();
+          setAccount('admin');
+          localStorage.setItem('account', 'admin'); // Store the login value in localStorage
+          navigate('/Admin');
+        } else {
+          let response = await authenticateLogin(login);
+          console.log(response);
+          if (response.status === 200) {
             handleClose();
             setAccount(response.data.data.firstname);
-        }
-        else {
+            localStorage.setItem('account', response.data.data.firstname); // Store the login value in localStorage
+          } else {
             setError(true);
+          }
         }
-    } 
+      }
 
     return(
         <Dialog open={open} onClose={handleClose} PaperProps={{ sx: {maxWidth: 'unset'}}}>
@@ -145,21 +158,21 @@ export default function Login({open,setOpen}) {
                 {
                     account.view === 'login' ?
                     <Wrapper>
-                        <TextField variant='standard' onChange={(e) => onValueChange(e)} name='username' label='Enter UserName'></TextField>
+                        <TextField variant='standard' onChange={(e) => onValueChange(e)} name='username' label='Enter UserName' required></TextField>
+                        <TextField variant='standard' onChange={(e) => onValueChange(e)} name='password' label='Enter Password' type='password' required></TextField>
                         {error && <Error>Please enter valid username or password</Error> }
-                        <TextField variant='standard' onChange={(e) => onValueChange(e)} name='password' label='Enter Password'></TextField>
                         <Text>By continuing, you agree to CTD's Terms of Use and Privacy Policy.</Text>
                         <LoginButton onClick={() => loginUser()}>Login</LoginButton>
                         <CreateAccount onClick={() =>  toggleSignup()}>New To CTD? Create an account</CreateAccount>
                     </Wrapper>
                 :
                     <Wrapper>
-                        <TextField variant='standard' onChange={(e) => onInputChange(e)} name='firstname' label='Enter FirstName'></TextField>
-                        <TextField variant='standard' onChange={(e) => onInputChange(e)} name='lastname' label='Enter LastName'></TextField>
-                        <TextField variant='standard' onChange={(e) => onInputChange(e)} name='username' label='Enter UserName'></TextField>
-                        <TextField variant='standard' onChange={(e) => onInputChange(e)} name='email' label='Enter Email'></TextField>
-                        <TextField variant='standard' onChange={(e) => onInputChange(e)} name='password' label='Enter Password'></TextField>
-                        <TextField variant='standard' onChange={(e) => onInputChange(e)} name='phone' label='Enter Phone'></TextField>
+                        <TextField variant='standard' onChange={(e) => onInputChange(e)} name='firstname' label='Enter FirstName' required></TextField>
+                        <TextField variant='standard' onChange={(e) => onInputChange(e)} name='lastname' label='Enter LastName' required></TextField>
+                        <TextField variant='standard' onChange={(e) => onInputChange(e)} name='username' label='Enter UserName' error={error} helperText={error && "Username cannot be 'admin'"} required></TextField>
+                        <TextField variant='standard' onChange={(e) => onInputChange(e)} name='email' label='Enter Email' required></TextField>
+                        <TextField variant='standard' onChange={(e) => onInputChange(e)} name='password' label='Enter Password' required minLength={8} maxLength={20}  error={error} pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}' helperText={error && 'Password must be 8-20 characters, contain at least one digit, one lowercase and one uppercase letter.'}></TextField>
+                        <TextField variant='standard' onChange={(e) => onInputChange(e)} name='phone' label='Enter Phone' required></TextField>
                         <LoginButton onClick={() => signupuser()}>Register</LoginButton>
                     </Wrapper>
                 }
