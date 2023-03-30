@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { Typography, Box, Menu, MenuItem ,styled} from '@mui/material'
 import LogoutIcon from '@mui/icons-material/Logout';
+import { useNavigate } from 'react-router-dom';
 
 const Login = styled(Box)`
 // background: #FB641B;
@@ -10,6 +11,7 @@ padding: 6px 12px 6px 12px;
 `;
 
 export default function Profile({account,setAccount}) {
+    const navigate = useNavigate();
     const [open,setOpen] = useState(false);
     const handleClick = (event) => {
         setOpen(event.currentTarget);
@@ -19,6 +21,7 @@ export default function Profile({account,setAccount}) {
     }
     const logoutUser = ()=>{
         setAccount('');
+        navigate('/');
     }
   return (
     <>

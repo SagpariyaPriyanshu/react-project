@@ -2,7 +2,7 @@ import { Box, Button, Dialog, TextField, Typography, styled} from '@mui/material
 import React from 'react'
 import { authenticateSignup, authenticateLogin } from '../service/api';
 import { useState,useContext } from 'react';
-import {DataContext}  from '../context/DataProvider';
+import { DataContext}  from '../context/DataProvider';
 import { useNavigate } from 'react-router-dom';
 
 const Component = styled(Box)`
@@ -134,7 +134,7 @@ export default function Login({open,setOpen}) {
           handleClose();
           setAccount('admin');
           localStorage.setItem('account', 'admin'); // Store the login value in localStorage
-          navigate('/Admin');
+          navigate('/AdminPanel');
         } else {
           let response = await authenticateLogin(login);
           console.log(response);
