@@ -15,10 +15,12 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import Login from "./Login";
 import Profile from "./Profile";
+import { useNavigate } from 'react-router-dom';
 
 const pages = ["Templates", "Components", "About Us"];
 
 export default function Nevbar() {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
   const { account, setAccount } = useContext(DataContext);
@@ -43,6 +45,10 @@ export default function Nevbar() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleAdminButtonClick = () => {
+    navigate('/AdminPanel');
   };
 
   return (
@@ -139,6 +145,15 @@ export default function Nevbar() {
                 </Link>
               ))}
             </Box>
+            {account === "admin" && (
+              <Button
+                onClick={handleAdminButtonClick}
+                sx={{ my: 2, color: "white", display: "block" }}
+                style={{ paddingRight: 12, paddingLeft: 12 }}
+              >
+                Admin
+              </Button>
+            )}
             {account ? (
               <Profile account={account} setAccount={setAccount} />
             ) : (

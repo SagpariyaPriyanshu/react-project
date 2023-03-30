@@ -1,4 +1,3 @@
-
 import User from '../model/user-schema.js';
 
 export const userSignup = async (request,response) => {
