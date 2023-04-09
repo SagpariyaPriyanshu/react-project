@@ -1,43 +1,44 @@
 import React from "react";
+import { Box } from "@mui/material";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 export default function Home() {
+  const [activeSlide, setActiveSlide] = React.useState(0);
+
+  const images = [
+    { src: "./sample/b1.gif", alt: "w1" },
+    { src: "./sample/b2.gif", alt: "w2" },
+    { src: "./sample/b3.gif", alt: "w3" },
+  ];
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveSlide((prevSlide) =>
+        prevSlide === images.length - 1 ? 0 : prevSlide + 1
+      );
+    }, 5000);
+    return () => clearInterval(interval);
+  }, 4000);
+
   return (
-    <div style={{ paddingTop: "55px" }}>
-      <div
-        id="carouselExampleInterval"
-        className="carousel carousel-dark slide"
-        data-bs-ride="carousel"
+    <Box sx={{ paddingTop: "55px", position: "relative", height: "100%" }}>
+      <Carousel
+        showStatus={false}
+        showThumbs={false}
+        infiniteLoop
+        autoPlay
+        interval={5000}
+        transitionTime={1000}
+        selectedItem={activeSlide}
+        onChange={setActiveSlide}
       >
-        <div className="carousel-inner">
-          <div className="carousel-item active" data-bs-interval={5000}>
-            <img src="./sample/b1.gif" className="d-block w-100" alt="w1" />
+        {images.map((image, index) => (
+          <div key={index}>
+            <img src={image.src} className="d-block w-100" alt={image.alt} />
           </div>
-          <div className="carousel-item" data-bs-interval={5000}>
-            <img src="./sample/b2.gif" className="d-block w-100" alt="w2" />
-          </div>
-          <div className="carousel-item" data-bs-interval={5000}>
-            <img src="./sample/b3.gif" className="d-block w-100" alt="w3" />
-          </div>
-        </div>
-        <button
-          className="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleInterval"
-          data-bs-slide="prev"
-        >
-          <span className="carousel-control-prev-icon" aria-hidden="true" />
-          <span className="visually-hidden">Previous</span>
-        </button>
-        <button
-          className="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleInterval"
-          data-bs-slide="next"
-        >
-          <span className="carousel-control-next-icon" aria-hidden="true" />
-          <span className="visually-hidden">Next</span>
-        </button>
-      </div>
-    </div>
+        ))}
+      </Carousel>
+    </Box>
   );
 }

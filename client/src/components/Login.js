@@ -122,7 +122,7 @@ export default function Login({open,setOpen}) {
         let response = await authenticateSignup(signup); 
         if(!response) return;
         handleClose();
-        setAccount(signup.firstname);
+        setAccount(signup.username);
     }
 
     const onValueChange = (e) => {
@@ -140,7 +140,7 @@ export default function Login({open,setOpen}) {
           console.log(response);
           if (response.status === 200) {
             handleClose();
-            setAccount(response.data.data.firstname);
+            setAccount(response.data.data.username);
             localStorage.setItem('account', response.data.data.firstname); // Store the login value in localStorage
           } else {
             setError(true);

@@ -1,26 +1,65 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { Card, CardContent, Typography, Box } from "@mui/material";
 
 export default function AdminPanel() {
-    
   return (
-    <div style={{ paddingTop: "55px" }}>
-        <div className='container'>
-        <Link to='/AdminPanel/ButtonCompo'>
-          <button
-            className='btn btn-light'
-            style={{ backgroundColor: '#00008b', color: 'white' }}>
-            Button
-          </button>
+    <>
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        paddingTop="55px"
+        height="100vh"
+      >
+        <Link
+          to="/AdminPanel/ButtonCompo"
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
+          <Card sx={{ minWidth: 275, minHeight: 275, marginRight: 10 }}>
+            <CardContent>
+              <Typography
+                sx={{ fontSize: 14 }}
+                color="text.secondary"
+                gutterBottom
+              >
+                Button
+              </Typography>
+            </CardContent>
+          </Card>
         </Link>
-        <Link to='/AdminPanel/CheckboxCompo'>
-          <button
-            className='btn btn-light'
-            style={{ backgroundColor: '#00008b', color: 'white' }}>
-            Checkbox
-          </button>
+        <Link
+          to="/AdminPanel/CheckboxCompo"
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
+          <Card sx={{ minWidth: 275, minHeight: 275, marginRight: 10 }}>
+            <CardContent>
+              <Typography
+                sx={{ fontSize: 14 }}
+                color="text.secondary"
+                gutterBottom
+              >
+                Checkbox
+              </Typography>
+            </CardContent>
+          </Card>
         </Link>
-        </div>
-    </div>
-  )
+        <Link
+          to="/AdminPanel/User"
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
+          <Card sx={{ minWidth: 275, minHeight: 275 }}>
+            <CardContent>
+              <Typography
+                sx={{ fontSize: 14 }}
+                color="text.secondary"
+                gutterBottom
+              >
+                User
+              </Typography>
+            </CardContent>
+          </Card>
+        </Link>
+      </Box>
+    </>
+  );
 }

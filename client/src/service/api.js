@@ -17,19 +17,3 @@ export const authenticateLogin = async (data) => {
         return error.response;
     }
 }
-
-export const postBtnCompo = async (data) => {
-    try{
-        return await axios.post(`${URL}/buttonComponents`,data);
-    }catch(error){
-        console.log('Error while calling buttonComponents api ',error);
-    }
-}
-export const postCheckboxCompo = async (data) => {
-    try{
-        return await axios.post(`${URL}/checkboxComponents`,data);
-    }catch(error){
-        console.log('Error while calling buttonComponents api ',error);
-    }
-}
-

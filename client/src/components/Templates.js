@@ -1,56 +1,77 @@
 import React from "react";
-
 import { Link } from "react-router-dom";
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  CardActions,
+  Button,
+  Typography,
+  Box
+} from "@mui/material";
 
 export default function Templates() {
   return (
-    <div style={{width: "100%", height: "100vh", margin: "auto"}}>
-      <div className="container pt-5" style={{height: "100vh", display: "flex",alignItems: "center" }} >
-        <div className="row">
-          <div className="col" style={{ marginRight:"30px"}}>
-            <div
-              className="card"
-              style={{ width: "20rem", backgroundColor:"#ffffffc0" }}
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      paddingTop="55px"
+      height="100vh"
+    >
+      
+        <Card sx={{ backgroundColor: "#ffffffc0", width: "320px",marginRight: 10  }}>
+          <CardMedia
+            component="img"
+            height="350"
+            image="./sample/login.png"
+            alt="login"
+          />
+          <CardContent>
+            <Typography variant="h5" component="h2" gutterBottom>
+              Login Form
+            </Typography>
+            <Typography variant="body2" color="text.secondary" gutterBottom>
+              HTML + CSS
+            </Typography>
+          </CardContent>
+          <CardActions sx={{ justifyContent: "center" }}>
+            <Button
+              component={Link}
+              to="/GetLogin"
+              variant="contained"
+              sx={{ backgroundColor: "#00008b", color: "white",marginBottom:"10px" }}
             >
-              <img src="./sample/login.png" alt="login" className="card-img-top" />
-              <div className="card-body">
-                <h5 className="card-title">Login Form</h5>
-                <p className="card-text">HTML + CSS</p>
-                <div className="text-center">
-                  <Link
-                    to="/GetLogin"
-                    className="btn btn-light"
-                    style={{ backgroundColor: "#00008b", color: "white" }}
-                  >
-                    Custom
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col" style={{ marginRight:"30px"}}>
-            <div
-              className="card"
-              style={{ width: "20rem", backgroundColor:"#ffffffc0" }}
+              Custom
+            </Button>
+          </CardActions>
+        </Card>
+        <Card sx={{ backgroundColor: "#ffffffc0", width: "320px" }}>
+          <CardMedia
+            component="img"
+            height="350"
+            image="./sample/register.png"
+            alt="register"
+          />
+          <CardContent>
+            <Typography variant="h5" component="h2" gutterBottom>
+              Register Form
+            </Typography>
+            <Typography variant="body2" color="text.secondary" gutterBottom>
+              HTML + CSS
+            </Typography>
+          </CardContent>
+          <CardActions sx={{ justifyContent: "center" }}>
+            <Button
+              component={Link}
+              to="/GetRegister"
+              variant="contained"
+              sx={{ backgroundColor: "#00008b", color: "white",marginBottom:"10px" }}
             >
-              <img src="./sample/register.png" alt="register" className="card-img-top" />
-              <div className="card-body">
-                <h5 className="card-title">Register Form</h5>
-                <p className="card-text">HTML + CSS</p>
-                <div className="text-center">
-                  <Link
-                    to="/GetRegister"
-                    className="btn btn-light"
-                    style={{ backgroundColor: "#00008b", color: "white" }}
-                  >
-                    Custom
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+              Custom
+            </Button>
+          </CardActions>
+        </Card>
+    </Box>
   );
 }

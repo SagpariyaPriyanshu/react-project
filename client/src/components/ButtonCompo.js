@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Box, Button, Typography } from "@mui/material";
 const URL = "http://localhost:8000";
 
 export default function ButtonCompo() {
@@ -18,25 +19,23 @@ export default function ButtonCompo() {
     navigator.clipboard.writeText(btnCompo);
     alert("code copied");
   };
+  
   return (
-    <div style={{ paddingTop: "55px" }}>
-      <div className="container">
-        <ul>
-          {items.map((item) => (
-            <li
+    <Box paddingTop="55px">
+      <Box display="flex" justifyContent="center" alignItems="center">
+        {items.map((item) => (
+          <Box
+            key={item._id}
+            sx={{ margin: 2, padding: 1, minWidth: 120 }}
+          >
+            <div
               key={item._id}
-              style={{ paddingRight: 30, display: "inline-block" }}
-            >
-              <div
-                style={{ margin: 10, display: "inline-block" }}
-                key={item._id}
-                dangerouslySetInnerHTML={{ __html: item.btnCompo }}
-                onClick={() => handleButtonClick(item.btnCompo)}
-              />
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
+              dangerouslySetInnerHTML={{ __html: item.btnCompo }}
+              onClick={() => handleButtonClick(item.btnCompo)}
+            />
+          </Box>
+        ))} 
+      </Box>
+    </Box>
   );
 }
