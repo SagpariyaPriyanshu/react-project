@@ -25,7 +25,7 @@ export const get_btncompo = async (request,response)=>{
     });  
 }
 
-export const delete_btncompo = async (req, res)=>{
+export const delete_btncompoById = async (req, res)=>{
     try {
         const deletedItem = await btnCompo.findByIdAndDelete(req.params.id);
         if (!deletedItem) {

@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { Typography, Box, Menu, MenuItem ,styled} from '@mui/material'
 import LogoutIcon from '@mui/icons-material/Logout';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useNavigate } from 'react-router-dom';
 
 const Login = styled(Box)`
@@ -23,6 +24,10 @@ export default function Profile({account,setAccount}) {
         setAccount('');
         navigate('/');
     }
+    const viewProfile = ()=>{
+        handleClose();
+        navigate('/UserProfile');
+    }
   return (
     <>
         <Login onClick={handleClick}><Typography>Welcome, {account}</Typography></Login>
@@ -31,8 +36,12 @@ export default function Profile({account,setAccount}) {
             open={Boolean(open)}
             onClose={handleClose}
         >
+            <MenuItem onClick={()=>{handleClose(); viewProfile();}}>
+                <AccountCircleIcon fontSize='small' sx={{marginRight:"10px"}}/>
+                <Typography>Profile</Typography>
+            </MenuItem>
             <MenuItem onClick={()=>{handleClose(); logoutUser();}}>
-                <LogoutIcon color='primary' fontSize='small'/>
+                <LogoutIcon fontSize='small' sx={{marginRight:"10px"}}/>
                 <Typography>Logout</Typography>
             </MenuItem>
         </Menu>
